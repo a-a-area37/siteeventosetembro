@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inscrição - Evento AA</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <main class="form-container">
+    <h2>Formulário de Inscrição</h2>
+    <form id="formInscricao" action="https://script.google.com/macros/s/AKfycbwE9HkMfuH19CDO7wwfpUBWVuewilj6AlQWvQzGMKtAOp8wzVoPT2lt8p0xojCBj0GHxw/exec" method="POST">
+      <input type="text" name="nome" placeholder="Nome completo" required />
+      <input type="email" name="email" placeholder="Seu e-mail" required />
+      <input type="text" name="cidade" placeholder="Cidade" required />
+      <textarea name="mensagem" placeholder="Mensagem (opcional)"></textarea>
+
+      <label for="publico">Você é:</label>
+      <select name="publico" required>
+        <option value="">Selecione...</option>
+        <option value="Profissional de Saúde">Profissional de Saúde</option>
+        <option value="População em Geral">População em Geral</option>
+        <option value="Outro">Outro</option>
+      </select>
+
+      <label for="nessecitaCertificado">Necessita de Certificado?</label>
+      <select name="nessecitaCertificado" required>
+        <option value="">Selecione...</option>
+        <option value="Sim">Sim</option>
+        <option value="Não">Não</option>
+      </select>
+
+      <button type="submit">Enviar Inscrição</button>
+    </form>
+    <p id="statusMsg"></p>
+  </main>
+
+  <script>
+    const form = document.getElementById("formInscricao");
+    const statusMsg = document.getElementById("statusMsg");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+      })
+        .then(() => {
+          statusMsg.textContent = "✅ Inscrição enviada com sucesso!";
+          form.reset();
+        })
+        .catch(() => {
+          statusMsg.textContent = "❌ Ocorreu um erro. Tente novamente.";
+        });
+    });
+  </script>
+</body>
+</html>
