@@ -1,37 +1,65 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Evento AA - Seminário Profissional</title>
+  <title>Inscrição - Evento AA</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="logo.png" type="image/png">
 </head>
+
 <body>
-  <header>
-    <h1>Seminário de A.A. para Profissionais da Saúde</h1>
-    <p>Evento aberto à população curitibana e profissionais da área</p>
-    <a href="inscricao.html" class="btn">Fazer Inscrição</a>
-  </header>
-  <main>
-    <section>
-      <h2>📅 Data e Horário</h2>
-      <p>11 de Setembro de 2025<br>Das 13h às 18h</p>
+  <main class="form-container">
+    <button onclick="window.location.href='index.html'" style="margin-bottom: 20px;">← Voltar</button>
+    <h2>Formulário de Inscrição</h2>
+    <form id="formInscricao"
+      action="https://script.google.com/macros/s/AKfycbwE9HkMfuH19CDO7wwfpUBWVuewilj6AlQWvQzGMKtAOp8wzVoPT2lt8p0xojCBj0GHxw/exec"
+      method="POST">
+      <input type="text" name="nome" placeholder="Nome completo" required />
+      <input type="email" name="email" placeholder="Seu e-mail" required />
+      <input type="text" name="cidade" placeholder="Cidade" required />
+      <textarea name="mensagem" placeholder="Mensagem (opcional)"></textarea>
 
-      <h2>📍 Local</h2>
-      <p>Salão de Atos do Parque Barigui<br>Curitiba - PR</p>
+      <label for="publico">Você é:</label>
+      <select name="publico" required>
+        <option value="">Selecione...</option>
+        <option value="Profissional de Saúde">Profissional de Saúde</option>
+        <option value="População em Geral">População em Geral</option>
+        <option value="Outro">Outro</option>
+      </select>
 
-      <img src="local1.jpeg" alt="Foto do Salão de Atos" style="width:100%; max-width:600px; margin:10px 0;" />
-      <img src="local2.jpeg" alt="Foto do entorno do Parque" style="width:100%; max-width:600px;" />
+      <label for="nessecitaCertificado">Necessita de Certificado?</label>
+      <select name="nessecitaCertificado" required>
+        <option value="">Selecione...</option>
+        <option value="Sim">Sim</option>
+        <option value="Não">Não</option>
+      </select>
 
-      <h2>🎤 Participação Confirmada</h2>
-      <p>Palestra com Sr.ª Luciana Maísa da Silva Sydor<br>
-      Coordenadora de Saúde Mental - SMS Curitiba</p>
-    </section>
+      <button type="submit">Enviar Inscrição</button>
+    </form>
+    <p id="statusMsg"></p>
   </main>
-  <footer>
-    <p>Organizado por Alcoólicos Anônimos - Área 37</p>
-  </footer>
+
+  <script>
+    const form = document.getElementById("formInscricao");
+    const statusMsg = document.getElementById("statusMsg");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+      })
+        .then(() => {
+          statusMsg.textContent = "✅ Inscrição enviada com sucesso!";
+          form.reset();
+        })
+        .catch(() => {
+          statusMsg.textContent = "❌ Ocorreu um erro. Tente novamente.";
+        });
+    });
+  </script>
 </body>
+
 </html>
