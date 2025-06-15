@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Inscrição - Evento AA</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="logo.png" type="image/png">
 </head>
 
 <body>
   <main class="form-container">
+    <button onclick="window.location.href='index.html'" style="margin-bottom: 20px;">← Voltar</button>
     <h2>Formulário de Inscrição</h2>
-    <form id="formInscricao" action="https://script.google.com/macros/s/AKfycbwE9HkMfuH19CDO7wwfpUBWVuewilj6AlQWvQzGMKtAOp8wzVoPT2lt8p0xojCBj0GHxw/exec" method="POST">
+    <form id="formInscricao"
+      action="https://script.google.com/macros/s/AKfycbwE9HkMfuH19CDO7wwfpUBWVuewilj6AlQWvQzGMKtAOp8wzVoPT2lt8p0xojCBj0GHxw/exec"
+      method="POST">
       <input type="text" name="nome" placeholder="Nome completo" required />
       <input type="email" name="email" placeholder="Seu e-mail" required />
       <input type="text" name="cidade" placeholder="Cidade" required />
@@ -56,4 +61,5 @@
     });
   </script>
 </body>
+
 </html>
