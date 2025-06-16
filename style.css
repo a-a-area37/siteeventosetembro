@@ -44,7 +44,7 @@ main {
 
 input, textarea {
   width: 100%;
-  padding: 12px;
+  padding: 10px;
   margin: 10px 0;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -70,4 +70,23 @@ select {
   color: #333;
   font-family: inherit;
   box-sizing: border-box;
+}
+
+/* === Marca-d’água AA no fundo da página === */
+body {
+  position: relative;  /* necessário para o pseudo-elemento */
+  overflow-x: hidden;  /* evita scroll horizontal indesejado */
+}
+
+/* 3) Marca-d’água como fundo full-screen, mas quase invisível */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: url('fundo-logo.png') center center no-repeat;
+  background-size: auto;   /* cobre toda a tela */
+  opacity: 0.10;            /* bem discreto */
+  pointer-events: none;     /* cliques passam normalmente */
+  z-index: -1;              /* atrás de todo o conteúdo */
 }
